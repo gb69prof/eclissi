@@ -1,0 +1,9 @@
+{
+  "name": "ECLISSI — Atlante preciso da Foggia",
+  "short_name": "Eclissi",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#02040a",
+  "theme_color": "#02040a",
+  "icons": []
+}
