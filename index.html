@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#050712" />
+  <title>Atlante delle eclissi — PWA</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+  <script defer src="data.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div id="appShell">
+    <canvas id="spaceCanvas" aria-label="Visualizzazione astronomica interattiva"></canvas>
+
+    <header class="hud topbar glass">
+      <div class="brand">
+        <div class="orbitalLogo" aria-hidden="true"><span></span></div>
+        <div>
+          <h1>Atlante delle eclissi</h1>
+          <p>Sistema solare → geometria dell’eclisse → osservatore sulla Terra</p>
+        </div>
+      </div>
+      <nav class="viewSwitch" aria-label="Modalità di visualizzazione">
+        <button data-view="solar" class="active">Sistema</button>
+        <button data-view="eclipse">Eclisse</button>
+        <button data-view="earth">Terra</button>
+        <button data-view="observer">Osservatore</button>
+      </nav>
+    </header>
+
+    <aside class="hud sidePanel glass" id="eventPanel">
+      <div class="panelHead">
+        <div>
+          <h2>Prossimi 10 anni</h2>
+          <p id="rangeLabel">dal 10 giugno 2026 al 10 giugno 2036</p>
+        </div>
+        <div class="pill" id="engineStatus">NASA + calcolo locale</div>
+      </div>
+      <div class="filters" role="group" aria-label="Filtri eclissi">
+        <button class="chip active" data-filter="all">Tutte</button>
+        <button class="chip" data-filter="solar">Solari</button>
+        <button class="chip" data-filter="lunar">Lunari</button>
+      </div>
+      <div id="eventList" class="eventList" tabindex="0"></div>
+    </aside>
+
+    <section class="hud infoCard glass" id="infoCard" aria-live="polite">
+      <div class="infoTitleRow">
+        <div>
+          <h2 id="selectedTitle">Sistema solare reale, scala leggibile</h2>
+          <p id="selectedSubtitle">Le orbite usano elementi kepleriani JPL per una vista compatta e leggibile.</p>
+        </div>
+        <button id="toggleExplain" class="ghostBtn">Spiega</button>
+      </div>
+      <div id="explainText" class="explainText collapsed">
+        <p>Questa visualizzazione comprime distanze e dimensioni: è scientificamente orientata, non fisicamente in scala assoluta. Le eclissi globali sono basate sui cataloghi NASA/GSFC; quando la libreria Astronomy Engine è disponibile, i dati locali dell’osservatore vengono calcolati nel browser.</p>
+      </div>
+    </section>
+
+    <section class="hud controls glass">
+      <div class="controlBlock dateBlock">
+        <label for="dateSlider">Data simulata</label>
+        <input id="dateSlider" type="range" min="0" max="3653" value="0" step="1" />
+        <output id="dateOutput">10/06/2026</output>
+      </div>
+      <div class="controlBlock compact">
+        <label for="zoomSlider">Zoom</label>
+        <input id="zoomSlider" type="range" min="0.55" max="2.5" value="1" step="0.01" />
+      </div>
+      <div class="controlBlock compact">
+        <label for="tiltSlider">Inclinazione</label>
+        <input id="tiltSlider" type="range" min="0" max="72" value="42" step="1" />
+      </div>
+      <div class="controlButtons">
+        <button id="playBtn">▶︎ Anima</button>
+        <button id="todayBtn">Oggi</button>
+      </div>
+    </section>
+
+    <section class="hud observerPanel glass" id="observerPanel">
+      <div class="panelHead small">
+        <div>
+          <h2>Osservatore</h2>
+          <p>Coordinate modificabili. Predefinito: Foggia.</p>
+        </div>
+      </div>
+      <div class="coordGrid">
+        <label>Latitudine <input id="latInput" type="number" value="41.462" step="0.001" min="-90" max="90"></label>
+        <label>Longitudine <input id="lonInput" type="number" value="15.544" step="0.001" min="-180" max="180"></label>
+        <button id="geoBtn">Usa posizione</button>
+        <button id="calcLocalBtn">Calcola qui</button>
+      </div>
+      <div id="localResult" class="localResult">Seleziona un’eclisse e premi “Calcola qui”.</div>
+    </section>
+
+    <footer class="hud credits glass">
+      <span>Crediti dati: NASA/GSFC Fred Espenak; formule orbitali JPL SSD; calcolo locale opzionale con Astronomy Engine.</span>
+      <span class="safety">Mai osservare il Sole senza protezione certificata.</span>
+    </footer>
+  </div>
+</body>
+</html>

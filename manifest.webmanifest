@@ -1,0 +1,13 @@
+{
+  "name": "Atlante delle eclissi",
+  "short_name": "Eclissi",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050712",
+  "theme_color": "#050712",
+  "description": "PWA didattica per visualizzare sistema solare, eclissi solari/lunari e visibilità locale.",
+  "icons": [
+    {"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
