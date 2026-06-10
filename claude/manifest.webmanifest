@@ -1,0 +1,13 @@
+{
+  "name": "Atlante delle Eclissi — Foggia 2026–2036",
+  "short_name": "Atlante Eclissi",
+  "description": "Simulatore astronomico del sistema solare e calcolatore di eclissi solari e lunari viste da Foggia",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#05070f",
+  "theme_color": "#05070f",
+  "lang": "it",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
